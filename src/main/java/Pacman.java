@@ -56,9 +56,13 @@ public class Pacman {
         if (grid == null || grid.isOutside(nextX, nextY)) {
             return;
         }
+        int nextDir = Arrays.asList(DIRECTIONS).indexOf(nextDirection.toUpperCase());
+        if (nextDir < 0) {
+            return;
+        }
         currX = nextX;
         currY = nextY;
-        currDirection = Arrays.asList(DIRECTIONS).indexOf(nextDirection.toUpperCase());
+        currDirection = nextDir;
         canMove = true;
     }
 
@@ -81,7 +85,7 @@ public class Pacman {
     /**
      * Rotates the pacman to {@link Pacman#LEFT} or {@link Pacman#RIGHT}
      *
-     * @param direction
+     * @param direction can be {@link Pacman#LEFT} or {@link Pacman#RIGHT}
      */
     public void turnTo(int direction) {
         if (!canMove) {
@@ -94,7 +98,7 @@ public class Pacman {
      * Announces the X,Y and direction of the pacman
      */
     public void report() {
-        System.out.println(getCurrentX() + ", " + getCurrentY() + ", " + getCurrentDirection());
+        System.out.println(this);
     }
 
     /**
@@ -107,5 +111,10 @@ public class Pacman {
             throw new IllegalArgumentException("Invalid Grid");
         }
         this.grid = grid;
+    }
+
+    @Override
+    public String toString() {
+        return getCurrentX() + ", " + getCurrentY() + ", " + getCurrentDirection();
     }
 }
