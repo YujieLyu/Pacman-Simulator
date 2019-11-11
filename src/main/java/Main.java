@@ -67,11 +67,21 @@ public class Main {
         }
     }
 
+    /**
+     * Gets a {@link BufferedReader} to read commands
+     *
+     * @param filename Using {@link FileReader} if specified
+     * @return
+     * @throws FileNotFoundException
+     */
     private static BufferedReader getReader(String filename) throws FileNotFoundException {
         Reader reader = filename == null ? new InputStreamReader(System.in) : new FileReader(filename);
         return new BufferedReader(reader);
     }
 
+    /**
+     * Displays the usage of this app
+     */
     private static void usage() {
         System.err.println("Usage: ");
         System.err.println("Pacman Simulator: [<command file>]");
