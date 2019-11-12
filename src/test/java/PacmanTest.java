@@ -74,4 +74,19 @@ public class PacmanTest {
         }
         Assert.assertEquals("NORTH", pacman.getCurrentDirection());
     }
+
+    @Test
+    public void turnToBeforePlacing() {
+        for (int i = 0; i < 4; i++) {
+            pacman.turnTo(Pacman.LEFT);
+            Assert.assertEquals("NORTH", pacman.getCurrentDirection());
+        }
+        Assert.assertEquals("NORTH", pacman.getCurrentDirection());
+        for (int i = 0; i < 4; i++) {
+            pacman.turnTo(Pacman.RIGHT);
+            Assert.assertEquals("NORTH", pacman.getCurrentDirection());
+        }
+        Assert.assertEquals("NORTH", pacman.getCurrentDirection());
+    }
+
 }

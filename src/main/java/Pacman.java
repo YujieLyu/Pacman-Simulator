@@ -100,6 +100,9 @@ public class Pacman {
      * Announces the X,Y and direction of the pacman
      */
     public void report() {
+        if (!canMove) {
+            return;
+        }
         System.out.println(this);
     }
 
