@@ -15,11 +15,12 @@ public class Pacman {
     // The pace of pacman
     public static final int LEFT = -1;
     public static final int RIGHT = 1;
-    private static final int STEP = 1;
+    private static final int PACE = 1;
 
     private boolean canMove = false;
     private int currX;
     private int currY;
+    // the index of the current direction in "DIRECTIONS"
     private int currDirection;
     private Grid grid;
 
@@ -73,8 +74,8 @@ public class Pacman {
         if (!canMove) {
             return;
         }
-        int moveX = currDirection == EAST ? STEP : currDirection == WEST ? -STEP : 0;
-        int moveY = currDirection == NORTH ? STEP : currDirection == SOUTH ? -STEP : 0;
+        int moveX = currDirection == EAST ? PACE : currDirection == WEST ? -PACE : 0;
+        int moveY = currDirection == NORTH ? PACE : currDirection == SOUTH ? -PACE : 0;
         if (grid == null || grid.isOutside(currX + moveX, currY + moveY)) {
             return;
         }
@@ -88,9 +89,10 @@ public class Pacman {
      * @param direction can be {@link Pacman#LEFT} or {@link Pacman#RIGHT}
      */
     public void turnTo(int direction) {
-        if (!canMove) {
+        if (!canMove || (direction != LEFT && direction != RIGHT)) {
             return;
         }
+        // Rotates the current direction in the finite field of "DIRECTIONS"
         currDirection = (currDirection + direction + 4) % 4;
     }
 
