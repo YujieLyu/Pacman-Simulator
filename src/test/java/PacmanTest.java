@@ -58,6 +58,26 @@ public class PacmanTest {
         Assert.assertEquals(DEFAULT_REPORT, pacman.toString());
     }
 
+    private void moveToInvalidPosition(int nextX, int nextY, String nextDir) {
+        pacman.place(nextX, nextY, nextDir);
+        String expected = String.format("%d, %d, %s", nextX, nextY, nextDir);
+        Assert.assertEquals(expected, pacman.toString());
+        pacman.move();
+        Assert.assertEquals(expected, pacman.toString());
+    }
+
+    @Test
+    public void moveOutOfGrid() {
+        moveToInvalidPosition(0, 0, "SOUTH");
+        moveToInvalidPosition(0, 0, "WEST");
+        moveToInvalidPosition(0, ROWS - 1, "WEST");
+        moveToInvalidPosition(0, ROWS - 1, "NORTH");
+        moveToInvalidPosition(COLUMNS - 1, ROWS - 1, "NORTH");
+        moveToInvalidPosition(COLUMNS - 1, ROWS - 1, "EAST");
+        moveToInvalidPosition(COLUMNS - 1, 0, "EAST");
+        moveToInvalidPosition(COLUMNS - 1, 0, "SOUTH");
+    }
+
     @Test
     public void turnTo() {
         pacman.place(1, 1, "NORTH");
